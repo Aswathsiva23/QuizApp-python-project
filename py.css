@@ -1,0 +1,187 @@
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 15px 0;
+            text-align: center;
+            animation: slideIn 2s ease-out;
+        }
+
+        /* Navigation Links */
+        nav {
+            background-color: #444;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        /* Hover animation for navigation links */
+        nav a:hover {
+            color: #ffd700;
+            animation: bounce 0.5s ease;
+        }
+
+        /* Section Animation */
+        section {
+            padding: 20px;
+            text-align: center;
+            opacity: 0;
+            animation: fadeIn 2s ease-in forwards;
+        }
+
+        section h1 {
+            color: #333;
+            font-size: 36px;
+            margin-bottom: 15px;
+            animation: fadeInLeft 1.5s ease-in;
+        }
+
+        section p {
+            font-size: 18px;
+            color: #666;
+            animation: fadeInRight 1.5s ease-in;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            opacity: 0;
+            animation: fadeInUp 2s ease-in forwards;
+        }
+
+        /* Keyframes for animations */
+        @keyframes slideIn {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        .quiz-box {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 500px;
+        margin: 40px auto;
+        padding: 20px;
+        text-align: center;
+        animation: fadeInUp 1.5s ease-in forwards;
+    }
+
+    .quiz-box h2 {
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    /* Start Button Styles */
+    .start-btn {
+        background-color: #28a745;
+        color: #fff;
+        border: none;
+        padding: 15px 30px;
+        font-size: 18px;
+        border-radius: 5px;
+        cursor: pointer;
+        animation: pulse 1.5s infinite;
+        transition: background-color 0.3s;
+    }
+
+    .start-btn:hover {
+        background-color: #218838;
+    }
+
+    /* Button Pulse Animation */
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+            box-shadow: 0 0 10px rgba(40, 167, 69, 0.7);
+        }
+        50% {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(40, 167, 69, 0.7);
+        }
+        100% {
+            transform: scale(1);
+            box-shadow: 0 0 10px rgba(40, 167, 69, 0.7);
+        }
+    }
+
+    /* Animation for Box Appearance */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }

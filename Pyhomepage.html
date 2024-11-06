@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Homepage with Animations</title>
+    <style>
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 15px 0;
+            text-align: center;
+            animation: slideIn 2s ease-out;
+        }
+
+        nav {
+            background-color: #444;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #ffd700;
+            animation: bounce 0.5s ease;
+        }
+        section {
+            padding: 20px;
+            text-align: center;
+            opacity: 0;
+            animation: fadeIn 2s ease-in forwards;
+        }
+
+        section h1 {
+            color: #333;
+            font-size: 36px;
+            margin-bottom: 15px;
+            animation: fadeInLeft 1.5s ease-in;
+        }
+
+        section p {
+            font-size: 18px;
+            color: #666;
+            animation: fadeInRight 1.5s ease-in;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            opacity: 0;
+            animation: fadeInUp 2s ease-in forwards;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .quiz-box {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: 40px auto;
+            padding: 20px;
+            text-align: center;
+            animation: fadeInUp 1.5s ease-in forwards;
+        }
+
+        .quiz-box h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .start-btn {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            animation: pulse 1.5s infinite;
+            transition: background-color 0.3s;
+        }
+
+        .start-btn:hover {
+            background-color: #218838;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 10px rgba(40, 167, 69, 0.7);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 0 20px rgba(40, 167, 69, 0.7);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 10px rgba(40, 167, 69, 0.7);
+            }
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            background-color: rgba(0, 0, 0, 0.5); 
+            z-index: 9999; 
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .close-btn {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .close-btn:hover {
+            background-color: #0056b3;
+        }
+        .bg-img-div{
+            border: 2px solid green;
+            height: 410px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Welcome to Our Quizz World</h1>
+    </header>
+
+    <nav>
+        <a href="C:\Users\ADMIN\OneDrive\Desktop\Full stack\signuppy.html">Signup</a>
+        <a href="C:\Users\ADMIN\OneDrive\Desktop\Full stack\loginpy.html">Log-in</a>
+        <a href="C:\Users\ADMIN\OneDrive\Desktop\Full stack\aboutuspy.html">About Us</a>
+    </nav>
+    <div class="bg-img-div">
+    <div class="quiz-box">
+        <h2>Ready to Test Your Knowledge?</h2>
+        <a class="start-btn" onclick="checkLogin()" href="C:\Users\ADMIN\OneDrive\Desktop\Full stack\testpy.html">Start Test</a>
+    </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Our Website | All Rights Reserved</p>
+    </footer>
+
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <h3>Please log in to start the test!</h3>
+            <button class="close-btn" onclick="closePopup()">Close</button>
+        </div>
+    </div>
+<!-- 
+    <script>
+        // Simulating user login status (change to true if the user is logged in)
+        const isLoggedIn = false; // Change this to true to simulate a logged-in user
+
+        // Check login status
+        function checkLogin() {
+            if (!isLoggedIn) {
+                document.getElementById('popup').style.display = 'flex'; // Show popup
+            } else {
+                // Redirect to the test page
+                window.location.href = "C:/Users/ADMIN/OneDrive/Desktop/Full%20stack/testpy.html";
+            }
+        }
+
+        // Close the popup
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none'; // Hide popup
+        }
+    </script> -->
+</body>
+</html>

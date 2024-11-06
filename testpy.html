@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Quiz Game</title>
+    <style>
+        .quiz-container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            text-align: center;
+            animation: fadeInUp 1.5s ease-in forwards;
+        }
+
+        .quiz-container h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .question {
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+
+        .answers button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 10px 0;
+            width: 100%;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .answers button:hover {
+            background-color: #0056b3;
+        }
+
+        .next-btn, .back-btn {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: none;
+        }
+
+        .result-message {
+            font-size: 20px;
+            color: #28a745;
+            margin-top: 20px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="quiz-container">
+        <h2>Quiz Game</h2>
+        <div id="quiz">
+            <div class="question">Question will appear here</div>
+            <div class="answers">
+                <button class="answer-btn" onclick="selectAnswer(0)">Answer 1</button>
+                <button class="answer-btn" onclick="selectAnswer(1)">Answer 2</button>
+                <button class="answer-btn" onclick="selectAnswer(2)">Answer 3</button>
+                <button class="answer-btn" onclick="selectAnswer(3)">Answer 4</button>
+            </div>
+            <button class="next-btn" onclick="nextQuestion()">Next Question</button>
+            <!-- <button  class="back-btn" onclick="resetQuiz()"><a href="C:\Users\ADMIN\OneDrive\Desktop\Full stack\Pyhomepage.html">Back to Home</a></button> -->
+            <div class="result-message"></div>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "What is the correct file extension for Python files?",
+                answers: [".pyth", ".pt", ".py", ".pyt"],
+                correctAnswer: 2
+            },
+            {
+                question: "How do you create a variable with the numeric value 5 in Python?",
+                answers: ["x = 5", "int x = 5", "num x = 5", "x : 5"],
+                correctAnswer: 0
+            },
+            {
+                question: "What is the correct syntax to output 'Hello World' in Python?",
+                answers: ["echo 'Hello World'", "p('Hello World')", "print('Hello World')", "printf('Hello World')"],
+                correctAnswer: 2
+            },
+            {
+                question: "Which one of these is a mutable data type in Python?",
+                answers: ["tuple", "string", "list", "int"],
+                correctAnswer: 2
+            },
+            {
+                question: "Which of the following keywords is used for function declaration in Python?",
+                answers: ["function", "def", "func", "declare"],
+                correctAnswer: 1
+            },
+            {
+                question: "What is the output of 3 * 'Python'?",
+                answers: ["Python3", "Python Python Python", "Error", "3Python"],
+                correctAnswer: 1
+            },
+            {
+                question: "What is the output of len(['Python', 'Java', 'C++'])?",
+                answers: ["2", "3", "4", "Error"],
+                correctAnswer: 1
+            },
+            {
+                question: "Which of the following is a Python framework for web development?",
+                answers: ["React", "Django", "Spring", "Laravel"],
+                correctAnswer: 1
+            },
+            {
+                question: "How can you create a comment in Python?",
+                answers: ["# This is a comment", "// This is a comment", "/* This is a comment */", "-- This is a comment"],
+                correctAnswer: 0
+            },
+            {
+                question: "Which Python keyword is used to handle exceptions?",
+                answers: ["except", "try", "catch", "throw"],
+                correctAnswer: 1
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let selectedAnswerIndex = null;
+        let score = 0;
+        function loadQuestion() {
+            const questionElement = document.querySelector('.question');
+            const answerButtons = document.querySelectorAll('.answer-btn');
+            const nextButton = document.querySelector('.next-btn');
+            const backButton = document.querySelector('.back-btn');
+            const resultMessage = document.querySelector('.result-message');
+
+            questionElement.textContent = questions[currentQuestionIndex].question;
+
+            answerButtons.forEach((button, index) => {
+                button.textContent = questions[currentQuestionIndex].answers[index];
+                button.style.backgroundColor = '#007bff'; 
+                button.disabled = false; 
+            });
+
+            nextButton.style.display = 'none';
+            backButton.style.display = 'none';
+            resultMessage.textContent = '';
+            selectedAnswerIndex = null;
+        }
+
+        function selectAnswer(index) {
+            selectedAnswerIndex = index;
+            const correctAnswer = questions[currentQuestionIndex].correctAnswer;
+            const answerButtons = document.querySelectorAll('.answer-btn');
+            const resultMessage = document.querySelector('.result-message');
+
+            answerButtons.forEach((button, i) => {
+                button.style.backgroundColor = i === index ? '#ffc107' : '#007bff';
+                button.disabled = true; 
+            });
+
+            if (index === correctAnswer) {
+                resultMessage.textContent = 'Correct!';
+                resultMessage.style.color = '#28a745';
+                score++;  
+            } else {
+                resultMessage.textContent = 'Wrong! The correct answer is: ' + questions[currentQuestionIndex].answers[correctAnswer];
+                resultMessage.style.color = '#dc3545';
+            }
+
+            document.querySelector('.next-btn').style.display = 'inline-block';
+        }
+        function nextQuestion() {
+            currentQuestionIndex++;
+
+            if (currentQuestionIndex < questions.length) {
+                loadQuestion();
+            } else {
+                showFinalScore();
+            }
+        }
+
+        function showFinalScore() {
+            document.querySelector('.quiz-container').innerHTML = `
+                <h2>Quiz Completed!</h2>
+                <p>Your Score: ${score}/${questions.length}</p>
+                <button class="back-btn" onclick="resetQuiz()">Back to Quiz</button>
+            `;
+            document.querySelector('.back-btn').style.display = 'inline-block'; 
+        }
+
+        function resetQuiz() {
+            currentQuestionIndex = 0;
+            score = 0; 
+            loadQuestion(); 
+        }
+        loadQuestion();
+    </script>
+
+
+    <py-script src="app.py"></py-script>
+</body>
+</html>
